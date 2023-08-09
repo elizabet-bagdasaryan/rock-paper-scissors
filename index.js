@@ -17,20 +17,25 @@ const readline = createInterface({
   output: process.stdout
 });
 
+
 function askUserMove() {
-    readline.question('Enter your move: ', (userMove) => {
-        if (userMove === '0') {
-          console.log('Exiting the game.');
-          readline.close();
-          process.exit(0);
-        } else if (userMove === '?') {
-          game.showTable();
-          askUserMove();
-        } else {
-          game.playGame(moves[parseInt(userMove) - 1]);
-          askUserMove();
-        }
-      });
+  game.showMenu();  
+  readline.question('Enter your move: ', (userMove) => {
+    if (userMove === '0') {
+      console.log('Exiting the game.');
+      readline.close();
+      process.exit(0);
+    } else if (userMove === '?') {
+      console.log(game.showTable()); 
+    } else {
+      game.playGame(moves[parseInt(userMove) - 1]);
+    }
+    askUserMove();
+  });
 }
+
+  
+  
+  
 
 askUserMove();

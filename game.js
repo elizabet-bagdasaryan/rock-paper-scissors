@@ -32,7 +32,7 @@ export default class RockPaperScissors {
     } else if (result === 'lose') {
       console.log('You lose!');
     } else {
-      console.log('It\'s a draw!');
+      console.log("It's a draw!");
     }
   }
 
@@ -44,18 +44,18 @@ export default class RockPaperScissors {
     console.log('0 - Exit');
     console.log('? - Help');
   }
-
+  
   showTable() {
+    const gameRules = this.moves.map((move, index) => `${index + 1} - ${move}`).join('\n');
     const table = this.tableGenerator.generateTable();
-    console.log('Game Rules:');
-    this.moves.forEach((move, index) => {
-      console.log(`${index + 1} - ${move}`);
-    });
-
-    console.log('Table:');
-    console.log('    ' + this.moves.map((move, index) => `${index + 1}`).join('   '));
+    const tableOutput = ['Table:'];
+    tableOutput.push('    ' + this.moves.map((move, index) => `${index + 1}`).join('   '));
     for (let i = 0; i < table.length; i++) {
-      console.log(`${i + 1} - ${this.moves[i]}  ${table[i].join('   ')}`);
+      tableOutput.push(`${i + 1} - ${this.moves[i]}  ${table[i].join('   ')}`);
     }
+    return gameRules + '\n\n' + tableOutput.join('\n');
   }
+  
+
+  
 }
